@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/autoLicenseGenerator.iml" filepath="$PROJECT_DIR$/autoLicenseGenerator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../example/example.iml" filepath="$PROJECT_DIR$/../example/example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../example-dep/example-dep.iml" filepath="$PROJECT_DIR$/../example-dep/example-dep.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../license-tools-plugin.iml" filepath="$PROJECT_DIR$/../license-tools-plugin.iml" />
+    </modules>
+  </component>
+</project>

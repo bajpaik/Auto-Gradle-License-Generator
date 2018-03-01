@@ -1,0 +1,69 @@
+// This project's rootProject is ":buildSrc", so it should have a copy of build-script settings of the "/build.gradle"
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.novoda:bintray-release:0.4.0' // https://github.com/novoda/bintray-release
+    }
+}
+repositories {
+    jcenter()
+}
+
+
+ext {
+    metadata = [
+            groupId     : 'com.iamutkarshtiwart.licensetools',
+            repository  : 'git@github.com:iamutkarshtiwari/Auto-Gradle-License-Generator.git',
+            licences    : ['Apache-2.0']
+    ]
+}
+
+
+ext {
+    versionFile = file("./VERSION")
+    versionName = versionFile.readLines()[0].trim()
+    metadata.version = versionName
+}
+
+apply plugin: 'groovy'
+apply plugin: 'maven' // to add "plugin:install" to install it locally
+apply plugin: 'com.novoda.bintray-release' // to upload it to bintray
+
+targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+final metadata = ext.metadata
+final ARTIFACT_ID = "license-tools-plugin"
+
+// for "plugin:install"
+group = metadata.groupId
+jar.baseName = ARTIFACT_ID
+version = metadata.version
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+
+    compile 'org.yaml:snakeyaml:1.17'
+    compile 'org.apache.commons:commons-lang3:3.4'
+    testCompile 'junit:junit:4.12'
+}
+
+
+publish {
+    artifactId = ARTIFACT_ID
+    desc = 'A Gradle plugin to generate library licenses'
+
+    groupId = metadata.groupId
+    publishVersion = metadata.version
+    repository = metadata.repository
+    licences = metadata.licences
+}
+
+task makeJar(type: Copy) {
+    from('build/intermediates/bundles/release/')
+    into('build/outputs/')
+    into('release/')
+}
