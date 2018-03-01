@@ -1,0 +1,2 @@
+# Auto-Gradle-License-Generator
+A improvised plugin to auto-generate licences for gradle libraries written over - [Cookpad's Android License Tools Plugin](https://github.com/cookpad/license-tools-plugin)
